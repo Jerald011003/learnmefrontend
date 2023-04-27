@@ -6,8 +6,10 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
-import { PayPalButton } from 'react-paypal-button-v2'
+// import { PayPalButton } from 'react-paypal-button-v2'
 import { useNavigate } from 'react-router-dom'
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+
 function RegisterScreen({ location }) {
 
     const [name, setName] = useState('')
@@ -124,11 +126,16 @@ function RegisterScreen({ location }) {
                     </Form.Control>
                 </Form.Group>
                 <br></br>
-                <PayPalButton type='submit' variant='primary'
+           
+
+
+<PayPalScriptProvider >
+               <PayPalButtons type='submit' variant='primary'
                 amount={amount}
                 onApprove={successPaymentHandler}
                 />
 
+          </PayPalScriptProvider>
             </Form>
 
             <Row className='py-3'>
